@@ -1,0 +1,20 @@
+---
+- name: Deploy Travel Booking System on Kubernetes
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Start Minikube
+      command: minikube start
+
+    - name: Apply backend deployment
+      command: kubectl apply -f backend-deployment.yaml
+      args:
+        chdir: /path/to/k8s/manifests
+
+    - name: Apply frontend deployment
+      command: kubectl apply -f frontend-deployment.yaml
+      args:
+        chdir: /path/to/k8s/manifests
+
+    - name: Get Kubernetes services
+      command: kubectl get svc
